@@ -53,8 +53,9 @@ void timeAnalysis() {
 int main() {
     //std::vector<int> V;
     timeAnalysis();
-    srand(time(0));
+
     /*
+    srand(time(0));
     for (int i = 0; i < 200; i++) {
         V.push_back(rand() % 100);
     }
