@@ -1,9 +1,9 @@
 #include <vector>
-//#include <iostream>
+#include <cstdlib>
 #include "sort.h"
 
 /*
-void printVector(std::vector<int> V) {
+void printVector2(std::vector<int> V) {
     for (unsigned int i = 0; i < V.size(); i++) {
         (i < V.size()-1) ? std::cout << V[i] << ' ':
                            std::cout << V[i] << std::endl;
@@ -41,7 +41,36 @@ int partition(std::vector<int> & V, int lo, int hi) {
     return i;
 }
 
+void insertionsort(std::vector<int> & V) {
+    unsigned int j;
+    int tmp;
+    for (unsigned int i = 1; i < V.size(); i++) {
+        j = i;
+        while ((j > 0) && (V[j-1] > V[j])) {
+            tmp = V[j];
+            V[j] = V[j-1];
+            V[j-1] = tmp;
+            j--;
+        }
+    }
+}
+
 std::vector<int> sort(std::vector<int> V) {
-    quicksort(V, 0, V.size()-1);
+    if (V.size() > 100) {
+        quicksort(V, 0, V.size()-1);
+    } else {
+        insertionsort(V);
+    }
+    return V;
+}
+
+std::vector<int> sort(std::vector<int> V, std::string algo) {
+    if (algo == "quick") {
+        quicksort(V, 0, V.size()-1);
+    } else if (algo == "insertion") {
+        insertionsort(V);
+    } else {
+        std::exit(EXIT_FAILURE);
+    }
     return V;
 }
