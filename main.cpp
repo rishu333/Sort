@@ -22,8 +22,8 @@ void timeAnalysis() {
     std::vector<int> sortedVector;
 
     std::cout << "Size, ";
-    //std::cout << "Insertion, ";
-    std::cout << "Quick ";
+    std::cout << "Insertion, ";
+    std::cout << "Quick, ";
     std::cout << "std::sort\n";
 
     for (int j = 2; j < 1000000; j = j * 2) {
@@ -32,7 +32,6 @@ void timeAnalysis() {
         }
 
         clock_t startTime = clock();
-        /*
         sortedVector = kgk::sort(V, "insertion");
         std::cout << V.size() << ", ";
         std::cout << 
@@ -40,7 +39,6 @@ void timeAnalysis() {
             << "ms, ";
         sortedVector.clear();
         //V.clear();
-        */
 
         startTime = clock();
         sortedVector = kgk::sort(V, "quick");

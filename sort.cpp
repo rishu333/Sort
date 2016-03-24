@@ -82,7 +82,7 @@ void insertionsort(std::vector<int> & V) {
 }
 
 std::vector<int> sort(std::vector<int> V) {
-    if (V.size() > 100) {
+    if (V.size() > 65) {
         quicksort(V, 0, V.size()-1);
     } else {
         insertionsort(V);
