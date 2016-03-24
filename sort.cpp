@@ -2,16 +2,6 @@
 #include <cstdlib>
 #include "sort.h"
 
-/*
-void printVector2(std::vector<int> V) {
-    for (unsigned int i = 0; i < V.size(); i++) {
-        (i < V.size()-1) ? std::cout << V[i] << ' ':
-                           std::cout << V[i] << std::endl;
-    }
-}
-*/
-
-//std::vector<int> quicksort(std::vector<int> & V, int lo, int hi) {
 void quicksort(std::vector<int> & V, int lo, int hi) {
     unsigned int p;
     if (lo < hi) {
