@@ -54,9 +54,9 @@ int partition(std::vector<int> & V, int lo, int hi) {
 }
 
 void insertionsort(std::vector<int> & V, int lo, int hi) {
-    unsigned int j;
+    int j;
     int tmp;
-    for (unsigned int i = lo; i < hi; i++) {
+    for (int i = lo; i < hi; i++) {
         j = i;
         while ((j > 0) && (V[j-1] > V[j])) {
             tmp = V[j];

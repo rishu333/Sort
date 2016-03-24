@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <ctime> 
+#include <cstdint> 
 #include <algorithm> // std::sort
 #include "sort.h"    // kgk::sort
 
@@ -21,24 +22,28 @@ void timeAnalysis() {
     std::vector<int> Vcopy;
     std::vector<int> sortedVector;
 
+    const uint64_t MAX_LOOPS = 400000000;
+
     std::cout << "Size, ";
-    std::cout << "Insertion, ";
+    //std::cout << "Insertion, ";
     std::cout << "Quick, ";
     std::cout << "std::sort\n";
 
-    for (int j = 2; j < 1000000; j = j * 2) {
-        for (int i = 0; i < j; i++) {
+    for (uint64_t j = 2; j < MAX_LOOPS; j = j * 2) {
+        for (uint64_t i = 0; i < j; i++) {
             V.push_back(rand() % 100);
         }
 
         clock_t startTime = clock();
-        sortedVector = kgk::sort(V, "insertion");
         std::cout << V.size() << ", ";
+        /*
+        sortedVector = kgk::sort(V, "insertion");
         std::cout << 
             1000*(double)(clock() - startTime)/CLOCKS_PER_SEC 
             << "ms, ";
         sortedVector.clear();
         //V.clear();
+        */
 
         startTime = clock();
         sortedVector = kgk::sort(V, "quick");
