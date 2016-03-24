@@ -2,7 +2,29 @@
 #include <cstdlib>
 #include "sort.h"
 
+namespace kgk {
+
+bool isSorted(std::vector<int> v, int low, int high) {
+    int prev = v[low];
+    for (int i = low; i <= high; i++) {
+        if (v[i] < prev) {
+            return false;
+        }
+        prev = v[low];
+    }
+    return true;
+
+}
+
 void quicksort(std::vector<int> & V, int lo, int hi) {
+    if (isSorted(V, lo, hi)) {
+        return;
+    }
+
+    if (hi - lo < 100) {
+        insertionsort(V, lo, hi);
+    }
+
     unsigned int p;
     if (lo < hi) {
         p = partition(V, lo, hi);
@@ -29,6 +51,20 @@ int partition(std::vector<int> & V, int lo, int hi) {
     V[hi] = tmp;
 
     return i;
+}
+
+void insertionsort(std::vector<int> & V, int lo, int hi) {
+    unsigned int j;
+    int tmp;
+    for (unsigned int i = lo; i < hi; i++) {
+        j = i;
+        while ((j > 0) && (V[j-1] > V[j])) {
+            tmp = V[j];
+            V[j] = V[j-1];
+            V[j-1] = tmp;
+            j--;
+        }
+    }
 }
 
 void insertionsort(std::vector<int> & V) {
@@ -64,3 +100,4 @@ std::vector<int> sort(std::vector<int> V, std::string algo) {
     }
     return V;
 }
+} // namespace kgk

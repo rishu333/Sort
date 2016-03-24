@@ -3,8 +3,9 @@
  */
 #include <iostream>
 #include <vector>
-#include <ctime>
-#include "sort.h"
+#include <ctime> 
+#include <algorithm> // std::sort
+#include "sort.h"    // kgk::sort
 
 void printVector(std::vector<int> V) {
     for (unsigned int i = 0; i < V.size(); i++) {
@@ -15,13 +16,15 @@ void printVector(std::vector<int> V) {
 
 void timeAnalysis() {
 
-    std::vector<int> V;
     srand(time(0));
+    std::vector<int> V;
+    std::vector<int> Vcopy;
     std::vector<int> sortedVector;
 
     std::cout << "Size, ";
-    std::cout << "Insertion, ";
-    std::cout << "Quick\n";
+    //std::cout << "Insertion, ";
+    std::cout << "Quick ";
+    std::cout << "std::sort\n";
 
     for (int j = 2; j < 1000000; j = j * 2) {
         for (int i = 0; i < j; i++) {
@@ -29,26 +32,63 @@ void timeAnalysis() {
         }
 
         clock_t startTime = clock();
-        sortedVector = sort(V, "insertion");
+        /*
+        sortedVector = kgk::sort(V, "insertion");
         std::cout << V.size() << ", ";
         std::cout << 
             1000*(double)(clock() - startTime)/CLOCKS_PER_SEC 
             << "ms, ";
         sortedVector.clear();
-        V.clear();
+        //V.clear();
+        */
 
         startTime = clock();
-        sortedVector = sort(V, "quick");
+        sortedVector = kgk::sort(V, "quick");
         std::cout << 
             1000*(double)(clock() - startTime)/CLOCKS_PER_SEC
-            << "ms" << std::endl;
+            << "ms ";
         sortedVector.clear();
+        //V.clear();
+
+        Vcopy = V;
+        startTime = clock();
+        std::sort(Vcopy.begin(), Vcopy.end());
+        std::cout << 
+            1000*(double)(clock() - startTime)/CLOCKS_PER_SEC
+            << "ms " << std::endl;
+        Vcopy.clear();
         V.clear();
+ 
     }
+}
+
+void test() {
+    srand(time(0));
+    std::vector<int> V;
+    std::vector<int> Vcopy;
+    std::vector<int> sortedVector;
+
+    const int VECTOR_SIZE = 100;
+
+    for (int i = 0; i < VECTOR_SIZE; i++) {
+        V.push_back(rand() % 100);
+    }
+
+    std::cout << "unsorted\n";
+    printVector(V);
+
+    std::cout << "quick\n";
+    printVector(kgk::sort(V, "quick"));
+
+    std::cout << "insertion\n";
+    printVector(kgk::sort(V, "insertion"));
+
+
 }
 
 int main() {
     timeAnalysis();
+    //test();
     return 0;
 }
 
