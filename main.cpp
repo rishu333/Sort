@@ -44,7 +44,7 @@ void timeAnalysis() {
         sortedVector = kgk::sort(V, "quick");
         std::cout << 
             1000*(double)(clock() - startTime)/CLOCKS_PER_SEC
-            << "ms ";
+            << "ms, ";
         sortedVector.clear();
         //V.clear();
 
