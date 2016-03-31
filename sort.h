@@ -5,13 +5,27 @@
 #include <string>
 namespace kgk {
 
-void quicksort(std::vector<int>&, int, int);
-int partition(std::vector<int>&, int, int);
-std::vector<int> sort(std::vector<int>, std::string);
-std::vector<int> sort(std::vector<int>);
-void insertionsort(std::vector<int>&);
-void insertionsort(std::vector<int>&, int, int);
-bool isSorted(std::vector<int>);
-} // namespace kgk
+template <typename T>
+void quicksort(std::vector<T>&, int, int);
 
+template <typename T>
+int partition(std::vector<T>&, int, int);
+
+template <typename T>
+std::vector<T> sort(std::vector<T>, std::string);
+
+template <typename T>
+std::vector<T> sort(std::vector<T>);
+
+template <typename T>
+void insertionsort(std::vector<T>&);
+
+template <typename T>
+void insertionsort(std::vector<T>&, int, int);
+
+template <typename T>
+bool isSorted(std::vector<T>);
+
+} // namespace kgk
+#include "sort.cpp"
 #endif

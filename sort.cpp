@@ -1,12 +1,14 @@
 #include <vector>
 #include <cstdlib>
+#include <string>
 #include "sort.h"
 
 namespace kgk {
 
-bool isSorted(std::vector<int> v, int low, int high) {
-    int prev = v[low];
-    for (int i = low; i <= high; i++) {
+template <typename T>
+bool isSorted(std::vector<T> v, int low, int high) {
+    T prev = v[low];
+    for (int i = low; i <= 1+high; i++) {
         if (v[i] < prev) {
             return false;
         }
@@ -16,10 +18,13 @@ bool isSorted(std::vector<int> v, int low, int high) {
 
 }
 
-void quicksort(std::vector<int> & V, int lo, int hi) {
+template <typename T>
+void quicksort(std::vector<T> & V, int lo, int hi) {
+    /*
     if (isSorted(V, lo, hi)) {
         return;
     }
+    */
 
     if (hi - lo < 100) {
         insertionsort(V, lo, hi);
@@ -33,8 +38,9 @@ void quicksort(std::vector<int> & V, int lo, int hi) {
     }
 }
 
-int partition(std::vector<int> & V, int lo, int hi) {
-    int pivot = V[hi];
+template <typename T>
+int partition(std::vector<T> & V, int lo, int hi) {
+    T pivot = V[hi];
     int i = lo;
     int tmp;
     for (int j = lo; j < hi; j++) {
@@ -53,7 +59,8 @@ int partition(std::vector<int> & V, int lo, int hi) {
     return i;
 }
 
-void insertionsort(std::vector<int> & V, int lo, int hi) {
+template <typename T>
+void insertionsort(std::vector<T> & V, int lo, int hi) {
     int j;
     int tmp;
     for (int i = lo; i < hi; i++) {
@@ -67,9 +74,10 @@ void insertionsort(std::vector<int> & V, int lo, int hi) {
     }
 }
 
-void insertionsort(std::vector<int> & V) {
+template <typename T>
+void insertionsort(std::vector<T> & V) {
     unsigned int j;
-    int tmp;
+    T tmp;
     for (unsigned int i = 1; i < V.size(); i++) {
         j = i;
         while ((j > 0) && (V[j-1] > V[j])) {
@@ -81,7 +89,8 @@ void insertionsort(std::vector<int> & V) {
     }
 }
 
-std::vector<int> sort(std::vector<int> V) {
+template <typename T>
+std::vector<T> sort(std::vector<T> V) {
     if (V.size() > 65) {
         quicksort(V, 0, V.size()-1);
     } else {
@@ -90,7 +99,8 @@ std::vector<int> sort(std::vector<int> V) {
     return V;
 }
 
-std::vector<int> sort(std::vector<int> V, std::string algo) {
+template <typename T>
+std::vector<T> sort(std::vector<T> V, std::string algo) {
     if (algo == "quick") {
         quicksort(V, 0, V.size()-1);
     } else if (algo == "insertion") {

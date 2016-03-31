@@ -8,7 +8,8 @@
 #include <algorithm> // std::sort
 #include "sort.h"    // kgk::sort
 
-void printVector(std::vector<int> V) {
+template <typename T>
+void printVector(std::vector<T> V) {
     for (unsigned int i = 0; i < V.size(); i++) {
         (i < V.size()-1) ? std::cout << V[i] << ' ':
                            std::cout << V[i] << std::endl;
@@ -50,6 +51,8 @@ void timeAnalysis() {
         std::cout << 
             1000*(double)(clock() - startTime)/CLOCKS_PER_SEC
             << "ms, ";
+        std::cout << "kgk::sort Sorted vector: ";
+        printVector(sortedVector);
         sortedVector.clear();
         //V.clear();
 
@@ -67,9 +70,9 @@ void timeAnalysis() {
 
 void test() {
     srand(time(0));
-    std::vector<int> V;
-    std::vector<int> Vcopy;
-    std::vector<int> sortedVector;
+    std::vector<double> V;
+    std::vector<double> Vcopy;
+    std::vector<double> sortedVector;
 
     const int VECTOR_SIZE = 100;
 
@@ -85,13 +88,11 @@ void test() {
 
     std::cout << "insertion\n";
     printVector(kgk::sort(V, "insertion"));
-
-
 }
 
 int main() {
+    test();
     timeAnalysis();
-    //test();
     return 0;
 }
 
