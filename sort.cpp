@@ -8,7 +8,7 @@ namespace kgk {
 template <typename T>
 bool isSorted(std::vector<T> v, int low, int high) {
     T prev = v[low];
-    for (int i = low; i <= 1+high; i++) {
+    for (int i = 1+low; i <= high; i++) {
         if (v[i] < prev) {
             return false;
         }
@@ -20,7 +20,9 @@ bool isSorted(std::vector<T> v, int low, int high) {
 
 template <typename T>
 void quicksort(std::vector<T> & V, int lo, int hi) {
+    
     /*
+    // Not working properly
     if (isSorted(V, lo, hi)) {
         return;
     }
